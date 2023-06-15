@@ -1,0 +1,16 @@
+Bot.send('Hello, I am a movie search bot.');
+Bot.send('Enter the movie name to get the required details.');
+async function respond(inputText) {
+getDetails(inputText);
+}
+async function getDetails(movieName) {
+	var result = await CampK12.fetch('GET', 'https://www.omdbapi.com/?apikey=51b33037&t=' + movieName);
+	console.log(result);
+	if (result.Response == 'True') {
+		Bot.send('Movie name: ' + result.Title + ' | Director: ' + result.Director + ' | Actors: ' + result.Actors + ' | Story: ' + result.Plot + ' | IMDB Rating: ' + result.imdbRating);
+		Bot.send("Enter another movie name to get it's details.");
+	}
+	else {
+		Bot.send('Please enter the correct movie name.');
+	}
+}
