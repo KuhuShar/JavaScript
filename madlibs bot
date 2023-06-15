@@ -1,0 +1,60 @@
+Bot.send("Hi, I am a mad libs chatbot.");
+Bot.send("Please enter 'hi' to begin.");
+var freetime, favcolor, anynum, digust, creature, readytime, vegetable, element, superhero, status;
+async function respond(inputText){
+	inputText=inputText.toLowerCase();
+	if(inputText=='hi'){
+		Bot.send("What is your favourite colour?");
+		status = 1;
+	}
+	else if(status==1){
+		favcolor=inputText;
+		Bot.send("How much time do you take while getting ready?");
+		status = 2;
+	}
+	else if(status==2){
+		readytime=inputText;
+		Bot.send("Please enter a number.");
+		status=3;
+	}
+	else if(status==3){
+	anynum=inputText;
+	Bot.send("What do you like to do in your free time?");
+	status=4;
+	}
+	else if(status==4){
+		freetime=inputText;
+		Bot.send("What is a creature that disgusts you?");
+		status=5;
+	}
+	else if(status==5){
+		creature=inputText;
+		Bot.send("What do you feel when see something disgusting?");
+		status=6;
+	}
+	else if(status==6){
+		digust=inputText;
+		Bot.send("What is your least favourite vegetable?");
+		status=7;
+	}
+	else if(status==7){
+		vegetable=inputText;
+		Bot.send("What would you choose between fire and water?");
+		status=8;
+	}
+	else if(status==8){
+		element=inputText;
+		Bot.send("What would be your name if you were a superhero?");
+		status=9;
+	}
+	else if(status==9){
+		superhero=inputText;
+		Bot.send("One day I was trying to " + freetime + " and I heard a loud BOOM! As soon as I turned around to see what it was, I saw a " + favcolor + "-Fairy,she picked me up and took me to her secret hiding place. She told me she needed a side kick,and so she let me be her side kick! Then we looked out her window and saw " + anynum + " " + digust + " " + creature + "-monsters coming straight for us! I put on my red suit in " + readytime + " minute(s) and then I started to use my laser beams to keep the " + creature + "-monsters away! They were shooting me with " + vegetable + "-guns. Finally, " + favcolor + "-fairy brought the enemy down with her " + element + "-gun! That was the day I became " + superhero + ".");
+		Bot.send("Press 'hi' to restart.");
+		status=0;
+	}
+	else{
+		Bot.send("send 'hi' to start.");
+		status=0;
+	}
+ }
