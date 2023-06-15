@@ -1,0 +1,22 @@
+Bot.send("Hi, I am a prime number identifier bot.");
+Bot.send("Please enter a number.");
+var list =[2];
+var index= 1;
+async function respond(inputText) {
+	console.log(2);
+	for (var x = 3; x <= inputText; x++) {
+		var isPrime = true;
+		for (var y = 2; y < x; y++) {
+			if (x % y == 0) {
+				isPrime = false;
+				break;
+			}
+		}
+		
+		if (isPrime) {
+			list[index]=x;
+			index++;
+		}
+	}
+Bot.send("The prime numbers between 0 and "+inputText+" are "+list.join(",")+".");
+}
