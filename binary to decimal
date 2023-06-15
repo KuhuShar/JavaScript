@@ -1,0 +1,22 @@
+Bot.send("Please enter a binary number to convert it into decimals.");
+var array;
+async function respond(inputText) {
+	array = inputText.split("");
+	var x = check(array);
+	if (x) {
+		var decimal = parseInt(inputText, 2);
+		Bot.send("The decimal is " + decimal + ".");
+	}
+	else {
+		Bot.send("Please enter a binary number only");
+	}
+}
+function check(x) {
+	for (var y = 2; y <= 9; y++) {
+		if(x.includes(y.toString())){
+			return false;
+		}
+	}
+	return true;
+}
+
