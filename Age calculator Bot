@@ -1,0 +1,51 @@
+Bot.send("Hi, I am an age calculator bot.");
+Bot.send("Please send 'hi' to begin.");
+var status, date, year, month, name, age;
+
+var today=new Date();
+var currentYear=today.getFullYear();
+var currentMonth=today.getMonth()+1;
+var currentDate=today.getDate();
+async function respond(inputText){
+	inputText=inputText.toLowerCase();
+	if(inputText=="hi"){
+		Bot.send("What is your name?");
+		status= "start";
+	}
+	else if(status=="start"){
+		name = inputText;
+		Bot.send("Is your name "+name+" ?(yes/no)");
+		status = "first";
+	}
+	else if(status=="first"){
+		if(inputText=="yes"){
+			Bot.send("Thank you for confirming your name.");
+			Bot.send("please enter the date of your birth.");
+			status= "date";
+		}
+		else{
+			Bot.send("Please send 'hi'.");
+			name="";
+		}
+	}
+	else if(status=="date"){
+		date=parseInt(inputText);
+		Bot.send("Please enter the month of your birth.");
+		status="month";
+	}
+	else if(status=="month"){
+		month=parseInt(inputText);
+		Bot.send("Please enter the year you were born in.");
+		status="year";
+	}
+	else if(status="year"){
+		year=parseInt(inputText);
+		age=currentYear-year;
+		var resMonth =currentMonth-month;
+		if(resMonth<0){
+			age--;
+			resMonth= month - currentMonth;
+		}
+		Bot.send("You are "+age+" years "+resMonth+" months old.");
+	}
+ }
