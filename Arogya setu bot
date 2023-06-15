@@ -1,0 +1,56 @@
+Bot.send("Hi, I am arogya setu bot.");
+Bot.send("So you want to start with your assessment?(yes/no)");
+var status;
+var score = 0;
+async function respond(inputText) {
+	if (status == 0) {
+		if (inputText.toLowerCase() == "no") {
+			Bot.send("Thank you for your time");
+		}
+		else {
+			Bot.send("Do you have a fever?");
+			status = 1;
+		}
+	}
+	else if (status == 1) {
+		if (inputText.toLowerCase() == "yes") {
+			score++;
+		}
+		Bot.send("Do you have a cough?");
+		status = 2;
+	}
+	else if (status == 2) {
+		if (inputText.toLowerCase() == "yes") {
+			score++
+		}
+		Bot.send("Have you been in contact with any covid-19 patients?");
+		status = 3;
+	}
+	else if (status == 3) {
+		if (inputText.toLowerCase() == "yes") {
+			score += 4;
+		}
+		Bot.send("Have you travelled internationally in the past few weeks?");
+		status = 4;
+	}
+	else if (status == 4) {
+		if (inputText.toLowerCase() == "yes") {
+			score += 3;
+		}
+		Bot.send("Do you have difficulty in breathing?");
+		status = 5;
+	}
+	else if (status == 5) {
+		if (inputText.toLowerCase() == "yes")
+			score += 3;
+		if (score > 6) {
+			Bot.send("Please consult a doctor immediately.");
+		}
+		else {
+			Bot.send("You are at low risk.");
+		}
+		Bot.send("Do you want to retake the assessment?");
+		status = 0;
+		score=0;
+	}
+}
