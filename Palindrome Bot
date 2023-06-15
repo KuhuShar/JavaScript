@@ -1,0 +1,15 @@
+Bot.send("Hi, I am a palindrome bot.");
+Bot.send("Please enter a string to check if it is a palindrome.");
+async function respond(inputText){
+	var reverseString = inputText.split("").reverse().join("");
+	var length=inputText.split(" ").length;
+if(length>1){
+	Bot.send("Please enter only one word.");
+}
+else if (inputText==reverseString){
+	Bot.send(inputText+" is a palindrome.");
+}
+else{
+	Bot.send(inputText+" is not a palindrome.");
+}
+ }
