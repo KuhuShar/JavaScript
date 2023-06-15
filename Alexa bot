@@ -1,0 +1,56 @@
+Bot.send("Hi, I am Alexa.");
+Bot.send("Type anything to get started.");
+var status="intro"
+async function respond(inputText){
+	if (status=="intro"){
+		Bot.send("I can help you in searching for content.");
+		Bot.send("Press '1' to select google.");
+		Bot.send("Press '2' to select youtube.");
+		Bot.send("Press '3' to select amazon.");
+		Bot.send("Press '4' to play a song.");
+		Bot.send("Press '5' to take a selfie.");
+		status="first";
+	}
+	else if(status=="first"){
+		if (inputText=='1'){
+			Bot.send("What do you want to google?");
+			status="google";
+		}
+		else if(inputText=='2'){
+			Bot.send("What do you want to watch on youtube?");
+			status="youtube";
+		}
+		else if(inputText=="3"){
+			Bot.send("What do you want to buy on amazon?");
+			status="amazon";
+		}
+		else if(inputText=="4"){
+			this.parent.window.open(' https://gaana.com/song/cheap-thrills-37');
+			Bot.send("Do you want to restart again?");
+			status="intro";
+		}
+		else if(inputText=="5"){
+			this.parent.window.open(' https://faodlbpmcsioniqkwqrzig-on.drv.tw/takesnap/takeSnap.html');
+			Bot.send("Do you want to restart again?");
+			status="intro";
+		}
+	}
+	else if(status=="google"){
+		inputText=inputText.toLowerCase();
+		this.parent.window.open(' http://google.com/search?q='+inputText);
+		Bot.send("Do you want to restart again?");
+		status="intro";
+	}
+	else if(status=="youtube"){
+		inputText=inputText.toLowerCase();
+		this.parent.window.open('https://www.youtube.com/results?search_query='+inputText);
+		Bot.send("Do you want to restart again?");
+		status="intro";
+	}
+	else if(status=="amazon"){
+		inputText=inputText.toLowerCase();
+		this.parent.window.open('https://www.amazon.in/s?k='+inputText);
+		Bot.send("Do you want to restart again?");
+		status="intro";
+	}
+ }
