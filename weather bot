@@ -1,0 +1,43 @@
+Bot.send("Hi, I am a weather bot.");
+Bot.send("Please enter 'hi' to begin.");
+var status = "start";
+var choice, answer;
+async function respond(inputText) {
+	inputText = inputText.toLowerCase();
+	if (inputText == "hi") {
+		Bot.send("Press 1 for the weather.");
+		Bot.send("Press 2 for the humidity");
+		Bot.send("Press 3 for the pressure");
+		Bot.send("Press 4 for all three.");
+		status = "menu";
+	}
+	else if (status == "menu") {
+		choice = parseInt(inputText);
+		Bot.send("Please enter the city name to get its weather details.");
+		status = "final";
+	}
+	else if (status == "final") {
+		var result = await CampK12.fetch("GET", "https://api.openweathermap.org/data/2.5/weather?q=" + inputText + "&appid=37d99f4c8bd8fa96d4509c54c8a262d7");
+		console.log(result);
+		switch (choice) {
+			case 1: answer = (result.main.temp - 273.15) + "°C";
+				console.log(result.main.temp);
+				break;
+			case 2: answer = result.main.humidity + "%";
+				break;
+			case 3: answer = result.main.pressure + "Hg/mm";
+				break;
+			case 4: answer = "temperature = " + (result.main.temp - 273.15) + "°C, humidity = " + result.main.humidity + "%, pressure = " + result.main.pressure + "Hg/mm";
+				break;
+			default: answer = "Please select from 1, 2, 3, or 4 only.";
+				break;
+		}
+		Bot.send(answer);
+		await Bot.sleep(2000);
+		Bot.send("Enter 'hi' to start again.");
+		status = "start";
+	}
+	else {
+		Bot.send("Please enter 'hi' to begin.");
+	}
+}
