@@ -1,0 +1,34 @@
+Bot.send("Hi, I am an advanced calculator bot.");
+Bot.send("Please enter a mathematical equation to get its answer.");
+async function respond(inputText){
+	try{
+		inputText=inputText
+		.replace(/sin/g, "Math.sin")
+		.replace(/cos/g, "Math.cos")
+		.replace(/tan/g, "Math.tan")
+		.replace(/log/g, "Math.log")
+		.replace(/sqrt/g, "Math.sqrt")
+		.replace(/cbrt/g, "Math.cbrt")
+		.replace(/\^/g, "**")
+		.replace(/pi/g, "Math.PI")
+		.replace(/e/g, "Math.E")
+		.replace(/(\d+)!/g, "factorial($1)");
+		var result=eval(inputText);
+		if(isNaN(result)){
+			Bot.send("Mathematical error. Please recheck your expression.");
+			return;
+		}
+		Bot.send("The answer is "+result);
+	}
+	catch(e){
+		Bot.send("Please enter the correct mathematical expression.");
+	}
+ }
+ function factorial(num){
+	 if(num==0 ||num==1){
+		 return 1;
+	 }
+	 else{
+		 return num*factorial(num-1);
+	 }
+ }
