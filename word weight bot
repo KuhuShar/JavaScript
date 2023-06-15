@@ -1,0 +1,25 @@
+Bot.send("HI, I am word weight bot.");
+Bot.send("Please enter one word at a time.");
+async function respond(inputText){
+	Bot.send(weightCalculator(inputText));
+ }
+ function weightCalculator(str){
+	 var weight = 0;
+	 if(str.split(" ").length>1){
+		 weight= "Too many words.....Please enter one word at a time.";
+	 }
+	 else{
+		 var len = str.length;
+		 for(var pos=0; pos<len; pos++){
+			 var value = (str.charCodeAt(pos) -96);
+			 if(value>0 && value<=26){
+				 weight+=value;
+			 }
+			 else{
+				 weight="I have only learnt alphabets";
+				 break;
+			 }
+		 }
+	 }
+	 return weight;
+ }
